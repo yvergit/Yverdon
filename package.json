@@ -2,7 +2,7 @@
   "homepage": "https://yvergit.github.io/yverdon",
   "description": "Mini car racing webgame on react-three-fiber + cannon.js",
   "name": "r3f-car-racing",
-  "private": true,
+  "private": false,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
