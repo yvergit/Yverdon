@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🚗 R3F Car Racing! 🚗</title>
+    <style>
+      /* Basic loader styles */
+      #loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #163f04;
+        color: rgb(255, 255, 255);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        z-index: 9999;
+        font-family: sans-serif;
+      }
+
+      .lds-ellipsis {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 13px;
+        margin-bottom: 10px;
+      }
+
+      .lds-ellipsis div {
+        position: absolute;
+        top: 0;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: #ffffff;
+        animation-timing-function: cubic-bezier(0, 1, 1, 0);
+      }
+
+      .lds-ellipsis div:nth-child(1) {
+        left: 8px;
+        animation: lds-ellipsis1 0.6s infinite;
+      }
+
+      .lds-ellipsis div:nth-child(2) {
+        left: 8px;
+        animation: lds-ellipsis2 0.6s infinite;
+      }
+
+      .lds-ellipsis div:nth-child(3) {
+        left: 32px;
+        animation: lds-ellipsis2 0.6s infinite;
+      }
+
+      .lds-ellipsis div:nth-child(4) {
+        left: 56px;
+        animation: lds-ellipsis3 0.6s infinite;
+      }
+
+      @keyframes lds-ellipsis1 {
+        0% {
+          transform: scale(0);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes lds-ellipsis2 {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(24px);
+        }
+      }
+
+      @keyframes lds-ellipsis3 {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(0);
+        }
+      }
+
+      .fade-out {
+        opacity: 0;
+        transition: opacity 0.5s ease-out;
+        pointer-events: none;
+      }
+
+      body {
+        margin: 0;
+        background-color: #163f04;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      /* Fancy Portfolio Button */
+      .portfolio-button {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, #00ff88, #007755);
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 999px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        z-index: 10000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .portfolio-button:hover {
+        background: linear-gradient(135deg, #00ffaa, #009966);
+        transform: translateX(-50%) scale(1.05);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Ensure space under button for other UI */
+      #root {
+        margin-top: 80px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Fancy Centered Portfolio Button -->
+    <a
+      class="portfolio-button"
+      href="https://yverdonn.vercel.app/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      🚀 Click Here for Portfolio
+    </a>
+
+    <!-- Loader -->
+    <div id="loader">
+      <div class="lds-ellipsis">
+        <div></div><div></div><div></div><div></div>
+      </div>
+      <h2>Loading game...</h2>
+    </div>
+
+    <!-- React App Root -->
+    <div id="root"></div>
+
+    <!-- Game Script -->
+    <script type="module" src="src/main.jsx"></script>
+
+    <!-- Delayed loader removal -->
+    <script>
+      const checkReady = () => {
+        const root = document.getElementById('root');
+        if (root.children.length > 0) {
+          setTimeout(() => {
+            const loader = document.getElementById('loader');
+            loader.classList.add('fade-out');
+            setTimeout(() => loader.remove(), 500); // extra fade
+          }, 3000); // Wait 3s after app mounts
+        } else {
+          requestAnimationFrame(checkReady);
+        }
+      };
+      requestAnimationFrame(checkReady);
+    </script>
+  </body>
+</html>
