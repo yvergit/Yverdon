@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>🚗 Car Game! 🚗</title>
+    <title>✨ Game ✨</title>
     <style>
       /* Basic loader styles */
       #loader {
@@ -117,13 +117,18 @@
         text-decoration: none;
         z-index: 10000;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        transition: all 0.3s ease;
+        transition: all 0.3s ease, opacity 0.5s ease;
+      }
+
+      .portfolio-button.transparent {
+        opacity: 0;
       }
 
       .portfolio-button:hover {
         background: linear-gradient(135deg, #00ffaa, #009966);
         transform: translateX(-50%) scale(1.05);
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+        opacity: 1 !important;
       }
 
       /* Ensure space under button for other UI */
@@ -137,6 +142,7 @@
     <!-- Fancy Centered Portfolio Button -->
     <a
       class="portfolio-button"
+      id="portfolioBtn"
       href="https://yverdonn.vercel.app/"
       target="_blank"
       rel="noopener noreferrer"
@@ -158,7 +164,7 @@
     <!-- Game Script -->
     <script type="module" src="src/main.jsx"></script>
 
-    <!-- Delayed loader removal -->
+    <!-- Delayed loader removal and portfolio transparency -->
     <script>
       const checkReady = () => {
         const root = document.getElementById('root');
@@ -173,6 +179,14 @@
         }
       };
       requestAnimationFrame(checkReady);
+
+      // Make portfolio button transparent after 7 seconds
+      setTimeout(() => {
+        const btn = document.getElementById('portfolioBtn');
+        if (btn) {
+          btn.classList.add('transparent');
+        }
+      }, 7000);
     </script>
   </body>
 </html>
